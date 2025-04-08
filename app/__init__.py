@@ -35,3 +35,23 @@ def index():
     posts = Post.query.all()
     categories = Category.query.all()
     return render_template('index.html', posts=posts, categories=categories)
+
+#Ruta /post crear un nuevo post
+@app.route('/posts/new', methods=['GET','POST'])
+def add_post():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        category_id = request.form.get('category_id')
+        new_post = Post(title=title, content=content, category_id=category_id)
+        db.session.add(new_post)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+    
+    #Aqui sigue si es GET
+    categories = Category.query.all()
+    return render_template('create_post.html', categories=categories)
+
+if __name__ == '__main__':
+    app.run(debug=True)
