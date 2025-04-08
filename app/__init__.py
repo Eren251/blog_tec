@@ -18,6 +18,7 @@ db = SQLAlchemy(app)
 
 #Importar modelos para que SQLAlchemy los reconozca
 from app.models import Post
+from app.models import Category
 
 #Importar y registrar blueprints
 from app.routes.post import posts_bp
@@ -31,4 +32,6 @@ app.register_blueprint(posts_bp, url_prefix='/posts')
 #Ruta principal home
 @app.route('/')
 def index():
-    return 'Hola mundo'
+    posts = Post.query.all()
+    categories = Category.query.all()
+    return render_template('index.html', posts=posts, categories=categories)
