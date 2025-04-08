@@ -32,9 +32,7 @@ app.register_blueprint(posts_bp, url_prefix='/posts')
 #Ruta principal home
 @app.route('/')
 def index():
-    posts = Post.query.all()
-    categories = Category.query.all()
-    return render_template('index.html', posts=posts, categories=categories)
+    return redirect(url_for('posts.listar_posts'))
 
 #Ruta /post crear un nuevo post
 @app.route('/posts/new', methods=['GET','POST'])
