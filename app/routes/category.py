@@ -17,7 +17,7 @@ def add_categoria():
         db.session.add(new_category)
         db.session.commit()
         return redirect(url_for('categories.listar_categorias'))
-    return render_template('categories/create_categoria.html')
+    return render_template('categories/create_categorias.html')
 
 @categories_bp.route('/edit/<int:id>', methods=['GET', 'POST'])
 def update_categoria(id):
