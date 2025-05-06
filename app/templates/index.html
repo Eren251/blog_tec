@@ -1,27 +1,29 @@
 {% extends 'base.html' %}
-{% block title%} Blog Tec{% endblock %}
-{% block content%}
-<div class="columns">
-    <div class="column is-offset-3 is-6">
-		    <a  href="{{ url_for('posts.add_post') }}" class="button is-success"><i class="fa-solid fa-plus"></i> &nbsp; Agregar noticia</a>
-        <br><br>        
-        {% for post in posts %}
+
+{% block title %} Blog de Noticias {% endblock %}
+
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-4">
         <div class="card">
             <div class="card-content">
-                <div class="media">
-                    <div class="media-content">
-                        <p class="title is-4">{{ post.title }}</p>
-                        <p class="subtitle is-5">{{ post.category.name }}</p>
-                    </div>
-                </div>
-                <div class="content">
-                    {{ post.content }}
-                    </div>
-            </div>
-            <div>
+                <h3 class="title is-4">Ver Noticias</h3>
+                <p>ver,agregar,editar,eliminar</p>
+                <br>
+                <a href="{{ url_for('posts.listar_posts')}}" class="button is-primary">Haz clic aquí</a>
             </div>
         </div>
-        {% endfor %}
+    </div>
+    
+    <div class="column is-4">
+        <div class="card">
+            <div class="card-content">
+                <h3 class="title is-4">Administrar categorías</h3>
+                <p>da click aqui para administrar categorias</p>
+                <br>
+                <a href="{{ url_for('categories.listar_categorias')}}" class="button is-primary">Haz clic aquí</a>
+            </div>
+        </div>
     </div>
 </div>
-{% endblock%}
+{% endblock %}
